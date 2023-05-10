@@ -1,0 +1,1558 @@
+[
+    {
+        "id": "efab001b4cacac6c",
+        "type": "tab",
+        "label": "Plant Monitoring",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6743dfb02ec608e2",
+        "type": "tab",
+        "label": "Industrial Machine Monitoring",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "53409b8f17829c48",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.125.16",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3c480d56cdd7476b",
+        "type": "MySQLdatabase",
+        "name": "SensorNetwork",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "sensornetwork",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "57784d8d760a45d9",
+        "type": "MySQLdatabase",
+        "name": "SensorNetwork2",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "sensornetwork2",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "5c61657fadd4d168",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.135.16",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "80d9f821f6a3652f",
+        "type": "mysql",
+        "z": "efab001b4cacac6c",
+        "mydb": "3c480d56cdd7476b",
+        "name": "",
+        "x": 1080,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0ed7455b24db7d60",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA1/temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "fc503e89d424dfc5"
+            ]
+        ]
+    },
+    {
+        "id": "bc878479a3827970",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA1/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 240,
+        "wires": [
+            [
+                "fc503e89d424dfc5"
+            ]
+        ]
+    },
+    {
+        "id": "7003d97733961802",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA1/airQuality",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 300,
+        "wires": [
+            [
+                "fc503e89d424dfc5"
+            ]
+        ]
+    },
+    {
+        "id": "9ee49cd67991e2c7",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA1/soilMoisture",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 360,
+        "wires": [
+            [
+                "fc503e89d424dfc5"
+            ]
+        ]
+    },
+    {
+        "id": "6f3529dc72b35115",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA1/lightIntensity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "fc503e89d424dfc5"
+            ]
+        ]
+    },
+    {
+        "id": "fc503e89d424dfc5",
+        "type": "join",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "5",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 390,
+        "y": 300,
+        "wires": [
+            [
+                "00e87c297fbf043b"
+            ]
+        ]
+    },
+    {
+        "id": "00e87c297fbf043b",
+        "type": "function",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "func": "\nvar myArray = msg.payload;\nvar temp = myArray[0];\nvar humidity = myArray[1];\nvar airQuality = myArray[2];\nvar soilMoisture = myArray[3];\nvar lightIntensity = myArray[4];\n\nvar dt = new Date(),\ncurrent_date = dt.getDate(),\ncurrent_month = dt.getMonth() + 1,\ncurrent_year = dt.getFullYear(),\ncurrent_hrs = dt.getHours(),\ncurrent_mins = dt.getMinutes(),\ncurrent_secs = dt.getSeconds();\nvar datetime =  current_year + \"-\" + current_month + \"-\" + current_date + \" \" + current_hrs + \":\" + current_mins+ \":\" +current_secs;\n\nvar theSQL = \"INSERT INTO sensor_node_1_tb (Temperature,Humidity,Air_Quality,Soil_Moisture,Light_Intensity, Date_n_Time) VALUES\";\ntheSQL = theSQL + \"('\" + temp + \"' , '\" + humidity + \"' , '\" + airQuality + \"' , '\" + soilMoisture + \"' , '\" + lightIntensity+ \"' , '\" + datetime+ \"');\";\n\nmsg.topic = theSQL;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 300,
+        "wires": [
+            [
+                "26c0d1b54b55a85c",
+                "80d9f821f6a3652f"
+            ]
+        ]
+    },
+    {
+        "id": "26c0d1b54b55a85c",
+        "type": "debug",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "50de746b02d40b48",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA2/temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 500,
+        "wires": [
+            [
+                "088d6b12a63f393c"
+            ]
+        ]
+    },
+    {
+        "id": "f4db1b05b9964dea",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA2/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 560,
+        "wires": [
+            [
+                "088d6b12a63f393c"
+            ]
+        ]
+    },
+    {
+        "id": "5ea908233b16b808",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA2/airQuality",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 620,
+        "wires": [
+            [
+                "088d6b12a63f393c"
+            ]
+        ]
+    },
+    {
+        "id": "bffd14994f874062",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA2/soilMoisture",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 680,
+        "wires": [
+            [
+                "088d6b12a63f393c"
+            ]
+        ]
+    },
+    {
+        "id": "7e729466a258ae1d",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA2/lightIntensity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 740,
+        "wires": [
+            [
+                "088d6b12a63f393c"
+            ]
+        ]
+    },
+    {
+        "id": "088d6b12a63f393c",
+        "type": "join",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "5",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 390,
+        "y": 620,
+        "wires": [
+            [
+                "ad4f7dba4e7eb087"
+            ]
+        ]
+    },
+    {
+        "id": "ad4f7dba4e7eb087",
+        "type": "function",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "func": "\nvar myArray = msg.payload;\nvar temp = myArray[0];\nvar humidity = myArray[1];\nvar airQuality = myArray[2];\nvar soilMoisture = myArray[3];\nvar lightIntensity = myArray[4];\n\nvar dt = new Date(),\ncurrent_date = dt.getDate(),\ncurrent_month = dt.getMonth() + 1,\ncurrent_year = dt.getFullYear(),\ncurrent_hrs = dt.getHours(),\ncurrent_mins = dt.getMinutes(),\ncurrent_secs = dt.getSeconds();\nvar datetime =  current_year + \"-\" + current_month + \"-\" + current_date + \" \" + current_hrs + \":\" + current_mins+ \":\" +current_secs;\n\nvar theSQL = \"INSERT INTO sensor_node_2_tb (Temperature,Humidity,Air_Quality,Soil_Moisture,Light_Intensity, Date_n_Time) VALUES\";\ntheSQL = theSQL + \"('\" + temp + \"' , '\" + humidity + \"' , '\" + airQuality + \"' , '\" + soilMoisture + \"' , '\" + lightIntensity+ \"' , '\" + datetime+ \"');\";\n\nmsg.topic = theSQL;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 620,
+        "wires": [
+            [
+                "80d9f821f6a3652f",
+                "51ae0f119edab8b0"
+            ]
+        ]
+    },
+    {
+        "id": "51ae0f119edab8b0",
+        "type": "debug",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "ac3df98871ca7670",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA3/temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 880,
+        "wires": [
+            [
+                "ffe58e7cac3f6458"
+            ]
+        ]
+    },
+    {
+        "id": "d7c601bfe4bd3b53",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA3/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 940,
+        "wires": [
+            [
+                "ffe58e7cac3f6458"
+            ]
+        ]
+    },
+    {
+        "id": "fe67747b4cf7efd0",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA3/airQuality",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 1000,
+        "wires": [
+            [
+                "ffe58e7cac3f6458"
+            ]
+        ]
+    },
+    {
+        "id": "ad819dec924260c8",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA3/soilMoisture",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 1060,
+        "wires": [
+            [
+                "ffe58e7cac3f6458"
+            ]
+        ]
+    },
+    {
+        "id": "ea0e90bf241a1f06",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA3/lightIntensity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 1120,
+        "wires": [
+            [
+                "ffe58e7cac3f6458"
+            ]
+        ]
+    },
+    {
+        "id": "ffe58e7cac3f6458",
+        "type": "join",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "5",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 410,
+        "y": 1000,
+        "wires": [
+            [
+                "ae15354caad92b36"
+            ]
+        ]
+    },
+    {
+        "id": "ae15354caad92b36",
+        "type": "function",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "func": "\nvar myArray = msg.payload;\nvar temp = myArray[0];\nvar humidity = myArray[1];\nvar airQuality = myArray[2];\nvar soilMoisture = myArray[3];\nvar lightIntensity = myArray[4];\n\nvar dt = new Date(),\ncurrent_date = dt.getDate(),\ncurrent_month = dt.getMonth() + 1,\ncurrent_year = dt.getFullYear(),\ncurrent_hrs = dt.getHours(),\ncurrent_mins = dt.getMinutes(),\ncurrent_secs = dt.getSeconds();\nvar datetime =  current_year + \"-\" + current_month + \"-\" + current_date + \" \" + current_hrs + \":\" + current_mins+ \":\" +current_secs;\n\nvar theSQL = \"INSERT INTO sensor_node_3_tb (Temperature,Humidity,Air_Quality,Soil_Moisture,Light_Intensity, Date_n_Time) VALUES\";\ntheSQL = theSQL + \"('\" + temp + \"' , '\" + humidity + \"' , '\" + airQuality + \"' , '\" + soilMoisture + \"' , '\" + lightIntensity+ \"' , '\" + datetime+ \"');\";\n\nmsg.topic = theSQL;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1000,
+        "wires": [
+            [
+                "4f88328661808e7f",
+                "80d9f821f6a3652f"
+            ]
+        ]
+    },
+    {
+        "id": "4f88328661808e7f",
+        "type": "debug",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "0b20b6a8f4c5af1a",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA4/temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 1200,
+        "wires": [
+            [
+                "9cc11b4b44d06903"
+            ]
+        ]
+    },
+    {
+        "id": "7c89767f84272b07",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA4/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 1260,
+        "wires": [
+            [
+                "9cc11b4b44d06903"
+            ]
+        ]
+    },
+    {
+        "id": "3bc8d75d30727f22",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA4/airQuality",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 1320,
+        "wires": [
+            [
+                "9cc11b4b44d06903"
+            ]
+        ]
+    },
+    {
+        "id": "9234aa210afad489",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA4/soilMoisture",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 1380,
+        "wires": [
+            [
+                "9cc11b4b44d06903"
+            ]
+        ]
+    },
+    {
+        "id": "a226a6a469572a8d",
+        "type": "mqtt in",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "topic": "nodeA4/lightIntensity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 1440,
+        "wires": [
+            [
+                "9cc11b4b44d06903"
+            ]
+        ]
+    },
+    {
+        "id": "9cc11b4b44d06903",
+        "type": "join",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "5",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 410,
+        "y": 1320,
+        "wires": [
+            [
+                "8c6ad980d0ab539e"
+            ]
+        ]
+    },
+    {
+        "id": "8c6ad980d0ab539e",
+        "type": "function",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "func": "\nvar myArray = msg.payload;\nvar temp = myArray[0];\nvar humidity = myArray[1];\nvar airQuality = myArray[2];\nvar soilMoisture = myArray[3];\nvar lightIntensity = myArray[4];\n\nvar dt = new Date(),\ncurrent_date = dt.getDate(),\ncurrent_month = dt.getMonth() + 1,\ncurrent_year = dt.getFullYear(),\ncurrent_hrs = dt.getHours(),\ncurrent_mins = dt.getMinutes(),\ncurrent_secs = dt.getSeconds();\nvar datetime =  current_year + \"-\" + current_month + \"-\" + current_date + \" \" + current_hrs + \":\" + current_mins+ \":\" +current_secs;\n\nvar theSQL = \"INSERT INTO sensor_node_4_tb (Temperature,Humidity,Air_Quality,Soil_Moisture,Light_Intensity, Date_n_Time) VALUES\";\ntheSQL = theSQL + \"('\" + temp + \"' , '\" + humidity + \"' , '\" + airQuality + \"' , '\" + soilMoisture + \"' , '\" + lightIntensity+ \"' , '\" + datetime+ \"');\";\n\nmsg.topic = theSQL;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1320,
+        "wires": [
+            [
+                "a88e5ecd56f5dc40",
+                "80d9f821f6a3652f"
+            ]
+        ]
+    },
+    {
+        "id": "a88e5ecd56f5dc40",
+        "type": "debug",
+        "z": "efab001b4cacac6c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "943d853e2bd6c874",
+        "type": "mysql",
+        "z": "6743dfb02ec608e2",
+        "mydb": "57784d8d760a45d9",
+        "name": "",
+        "x": 1130,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c61b3f21628ca746",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI1/temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 40,
+        "wires": [
+            [
+                "6fd5fa32b2aa9e80"
+            ]
+        ]
+    },
+    {
+        "id": "6597d9ae3bdc3c16",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI1/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "6fd5fa32b2aa9e80"
+            ]
+        ]
+    },
+    {
+        "id": "744ba1941010372f",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI1/noise",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "6fd5fa32b2aa9e80"
+            ]
+        ]
+    },
+    {
+        "id": "8971d05a0c116bf7",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI1/flame",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "6fd5fa32b2aa9e80"
+            ]
+        ]
+    },
+    {
+        "id": "cf33320b639dd931",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI1/smoke",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "6fd5fa32b2aa9e80"
+            ]
+        ]
+    },
+    {
+        "id": "6fd5fa32b2aa9e80",
+        "type": "join",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "6",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 410,
+        "y": 200,
+        "wires": [
+            [
+                "6fa506c8f16b78a4"
+            ]
+        ]
+    },
+    {
+        "id": "6fa506c8f16b78a4",
+        "type": "function",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "func": "\nvar myArray = msg.payload;\nvar temp = myArray[0];\nvar humidity = myArray[1];\nvar noise = myArray[2];\nvar flame = myArray[3];\nvar smoke = myArray[4];\nvar machineId = myArray[5];\n\nvar dt = new Date(),\ncurrent_date = dt.getDate(),\ncurrent_month = dt.getMonth() + 1,\ncurrent_year = dt.getFullYear(),\ncurrent_hrs = dt.getHours(),\ncurrent_mins = dt.getMinutes(),\ncurrent_secs = dt.getSeconds();\nvar datetime =  current_year + \"-\" + current_month + \"-\" + current_date + \" \" + current_hrs + \":\" + current_mins+ \":\" +current_secs;\n\nvar theSQL = \"INSERT INTO sensor_node_1_tb (Machine_id,Temperature,Humidity,Smoke_level,Flame_occurence,Noise_level, Date_n_Time) VALUES\";\ntheSQL = theSQL + \"('\" + machineId + \"' , '\" + temp + \"' , '\" + humidity + \"' , '\" + smoke + \"' , '\" + flame + \"' , '\" + noise + \"' , '\" + datetime+ \"');\";\n\nmsg.topic = theSQL;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 200,
+        "wires": [
+            [
+                "48578a039e76abae",
+                "943d853e2bd6c874"
+            ]
+        ]
+    },
+    {
+        "id": "48578a039e76abae",
+        "type": "debug",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "040709022513bb15",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI2/temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 400,
+        "wires": [
+            [
+                "2d3cdee2858c54d8"
+            ]
+        ]
+    },
+    {
+        "id": "177a799efca0681c",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI2/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 460,
+        "wires": [
+            [
+                "2d3cdee2858c54d8"
+            ]
+        ]
+    },
+    {
+        "id": "cbeac71df6884be5",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI2/noise",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 520,
+        "wires": [
+            [
+                "2d3cdee2858c54d8"
+            ]
+        ]
+    },
+    {
+        "id": "f11b1e560821bb1c",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI2/flame",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 580,
+        "wires": [
+            [
+                "2d3cdee2858c54d8"
+            ]
+        ]
+    },
+    {
+        "id": "e04ede365196d9c1",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI2/smoke",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 640,
+        "wires": [
+            [
+                "2d3cdee2858c54d8"
+            ]
+        ]
+    },
+    {
+        "id": "2d3cdee2858c54d8",
+        "type": "join",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "6",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 410,
+        "y": 560,
+        "wires": [
+            [
+                "ca34b4370a2c7ee7"
+            ]
+        ]
+    },
+    {
+        "id": "38436c5c824e5f63",
+        "type": "debug",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "58123db883be440b",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI3/temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 760,
+        "wires": [
+            [
+                "06dbd5599b71db8b"
+            ]
+        ]
+    },
+    {
+        "id": "f57dd0c83565aae1",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI3/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 820,
+        "wires": [
+            [
+                "06dbd5599b71db8b"
+            ]
+        ]
+    },
+    {
+        "id": "149f8b1aedcd5728",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI3/noise",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 880,
+        "wires": [
+            [
+                "06dbd5599b71db8b"
+            ]
+        ]
+    },
+    {
+        "id": "113da8b5616191e9",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI3/flame",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 940,
+        "wires": [
+            [
+                "06dbd5599b71db8b"
+            ]
+        ]
+    },
+    {
+        "id": "045f525effd3b1ae",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI3/smoke",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 1000,
+        "wires": [
+            [
+                "06dbd5599b71db8b"
+            ]
+        ]
+    },
+    {
+        "id": "06dbd5599b71db8b",
+        "type": "join",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "6",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 410,
+        "y": 920,
+        "wires": [
+            [
+                "dba1edc3a779aa4b"
+            ]
+        ]
+    },
+    {
+        "id": "80973c212ce906ac",
+        "type": "debug",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "ecd7aeeeefa074c0",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI4/temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 1120,
+        "wires": [
+            [
+                "c5c92defc3455401"
+            ]
+        ]
+    },
+    {
+        "id": "754b9b4b0a2bce12",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI4/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 1180,
+        "wires": [
+            [
+                "c5c92defc3455401"
+            ]
+        ]
+    },
+    {
+        "id": "cba83e458f8fe43b",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI4/noise",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 1240,
+        "wires": [
+            [
+                "c5c92defc3455401"
+            ]
+        ]
+    },
+    {
+        "id": "a3c78e7c7b84e791",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI4/flame",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 1300,
+        "wires": [
+            [
+                "c5c92defc3455401"
+            ]
+        ]
+    },
+    {
+        "id": "e162f5966b4bc174",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI4/smoke",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 1360,
+        "wires": [
+            [
+                "c5c92defc3455401"
+            ]
+        ]
+    },
+    {
+        "id": "c5c92defc3455401",
+        "type": "join",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "6",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 410,
+        "y": 1280,
+        "wires": [
+            [
+                "43c3cd2ca74923a9"
+            ]
+        ]
+    },
+    {
+        "id": "d852ba205510e0b7",
+        "type": "debug",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "797a2d4d31017e44",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI1/machineId",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 340,
+        "wires": [
+            [
+                "6fd5fa32b2aa9e80"
+            ]
+        ]
+    },
+    {
+        "id": "dc5d1616cdf35bb2",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI2/machineId",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 700,
+        "wires": [
+            [
+                "2d3cdee2858c54d8"
+            ]
+        ]
+    },
+    {
+        "id": "25cbf4b31e898c10",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI3/machineId",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 1060,
+        "wires": [
+            [
+                "06dbd5599b71db8b"
+            ]
+        ]
+    },
+    {
+        "id": "6480e9a00ce1289c",
+        "type": "mqtt in",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "topic": "nodeI4/machineId",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "53409b8f17829c48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 1420,
+        "wires": [
+            [
+                "c5c92defc3455401"
+            ]
+        ]
+    },
+    {
+        "id": "ca34b4370a2c7ee7",
+        "type": "function",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "func": "\nvar myArray = msg.payload;\nvar temp = myArray[0];\nvar humidity = myArray[1];\nvar noise = myArray[2];\nvar flame = myArray[3];\nvar smoke = myArray[4];\nvar machineId = myArray[5];\n\nvar dt = new Date(),\ncurrent_date = dt.getDate(),\ncurrent_month = dt.getMonth() + 1,\ncurrent_year = dt.getFullYear(),\ncurrent_hrs = dt.getHours(),\ncurrent_mins = dt.getMinutes(),\ncurrent_secs = dt.getSeconds();\nvar datetime =  current_year + \"-\" + current_month + \"-\" + current_date + \" \" + current_hrs + \":\" + current_mins+ \":\" +current_secs;\n\nvar theSQL = \"INSERT INTO sensor_node_2_tb (Machine_id,Temperature,Humidity,Smoke_level,Flame_occurence,Noise_level, Date_n_Time) VALUES\";\ntheSQL = theSQL + \"('\" + machineId + \"' , '\" + temp + \"' , '\" + humidity + \"' , '\" + smoke + \"' , '\" + flame + \"' , '\" + noise + \"' , '\" + datetime+ \"');\";\n\nmsg.topic = theSQL;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 560,
+        "wires": [
+            [
+                "943d853e2bd6c874",
+                "38436c5c824e5f63"
+            ]
+        ]
+    },
+    {
+        "id": "dba1edc3a779aa4b",
+        "type": "function",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "func": "\nvar myArray = msg.payload;\nvar temp = myArray[0];\nvar humidity = myArray[1];\nvar noise = myArray[2];\nvar flame = myArray[3];\nvar smoke = myArray[4];\nvar machineId = myArray[5];\n\nvar dt = new Date(),\ncurrent_date = dt.getDate(),\ncurrent_month = dt.getMonth() + 1,\ncurrent_year = dt.getFullYear(),\ncurrent_hrs = dt.getHours(),\ncurrent_mins = dt.getMinutes(),\ncurrent_secs = dt.getSeconds();\nvar datetime =  current_year + \"-\" + current_month + \"-\" + current_date + \" \" + current_hrs + \":\" + current_mins+ \":\" +current_secs;\n\nvar theSQL = \"INSERT INTO sensor_node_3_tb (Machine_id,Temperature,Humidity,Smoke_level,Flame_occurence,Noise_level, Date_n_Time) VALUES\";\ntheSQL = theSQL + \"('\" + machineId + \"' , '\" + temp + \"' , '\" + humidity + \"' , '\" + smoke + \"' , '\" + flame + \"' , '\" + noise + \"' , '\" + datetime+ \"');\";\n\nmsg.topic = theSQL;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 920,
+        "wires": [
+            [
+                "80973c212ce906ac",
+                "943d853e2bd6c874"
+            ]
+        ]
+    },
+    {
+        "id": "43c3cd2ca74923a9",
+        "type": "function",
+        "z": "6743dfb02ec608e2",
+        "name": "",
+        "func": "\nvar myArray = msg.payload;\nvar temp = myArray[0];\nvar humidity = myArray[1];\nvar noise = myArray[2];\nvar flame = myArray[3];\nvar smoke = myArray[4];\nvar machineId = myArray[5];\n\nvar dt = new Date(),\ncurrent_date = dt.getDate(),\ncurrent_month = dt.getMonth() + 1,\ncurrent_year = dt.getFullYear(),\ncurrent_hrs = dt.getHours(),\ncurrent_mins = dt.getMinutes(),\ncurrent_secs = dt.getSeconds();\nvar datetime =  current_year + \"-\" + current_month + \"-\" + current_date + \" \" + current_hrs + \":\" + current_mins+ \":\" +current_secs;\n\nvar theSQL = \"INSERT INTO sensor_node_4_tb (Machine_id,Temperature,Humidity,Smoke_level,Flame_occurence,Noise_level, Date_n_Time) VALUES\";\ntheSQL = theSQL + \"('\" + machineId + \"' , '\" + temp + \"' , '\" + humidity + \"' , '\" + smoke + \"' , '\" + flame + \"' , '\" + noise + \"' , '\" + datetime+ \"');\";\n\nmsg.topic = theSQL;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1280,
+        "wires": [
+            [
+                "d852ba205510e0b7",
+                "943d853e2bd6c874"
+            ]
+        ]
+    }
+]
