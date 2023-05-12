@@ -666,7 +666,7 @@ def translateQuery():
 
 #database initialization
 try:
-    db = mysql.connector.connect(host="localhost",user="root",password="",database="sensornetwork2")
+    db = mysql.connector.connect(host="localhost",user="root",password="mapua",database="sensornetwork2")
 except:
     print("MySQL connection is not found.")
 else:

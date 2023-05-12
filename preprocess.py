@@ -82,9 +82,9 @@ def remove_stop_words(tokens):
 
 def pos_tagging(tokens):
     
-    java_path = "C:/Program Files/Java/jre1.8.0_311/bin"
+    java_path = "/usr/lib/jvm/default-java/bin"
     os.environ['JAVAHOME'] = java_path
-    stanford_dir = "D:/3rdYear3rdTerm/CPE200-2L/stanford-postagger"
+    stanford_dir = "/home/cpe124-group4/nlpThesis/stanford-postagger"
     model_path = stanford_dir + "/models/english-bidirectional-distsim.tagger"
     jar_path = stanford_dir + "/stanford-postagger.jar"
     tagger = StanfordPOSTagger(model_path, path_to_jar=jar_path)
