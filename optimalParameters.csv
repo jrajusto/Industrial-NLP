@@ -1,5 +1,5 @@
 Name,minHumidity,maxHumidity,minTemperature,maxTemperature,minNoise_level,maxNoise_level,minSmoke_level,maxSmoke_level,Flame_occurence
-printer,60,75,30,50,400,700,0,1000,0
-soldering,60,75,30,50,400,700,0,1000,0
-soldering,60,60,30,50,400,700,0,1000,0
-cutting,60,75,30,50,400,700,0,1000,0
+printer,60,60,30,50,400,700,0,1000,0
+solder,60,60,30,50,400,700,0,1000,0
+oven,60,60,30,50,400,700,0,1000,0
+cutter,60,60,30,50,400,700,0,1000,1

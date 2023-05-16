@@ -57,6 +57,7 @@ with open('optimalParameters.csv','r') as csv_file:
         if line_count == 4:
             optimalMachine4 = Machine(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9])
         line_count = line_count + 1
+    csv_file.close()
 
 
 #optimal conditions for the machines
@@ -87,16 +88,16 @@ def editOptimal(name,minHum,maxHum,minTemp,maxTemp,minNoise,maxNoise,minSmoke,ma
         optimalMachine4.setOptimal(name,minHum,maxHum,minTemp,maxTemp,minNoise,maxNoise,minSmoke,maxSmoke,flame)
         machineList[3] = name
 
-    df.loc[node,'Name'] = name
-    df.loc[node,'minHumidity'] = minHum
-    df.loc[node,'maxHumidity'] = maxHum
-    df.loc[node,'minTemperature'] = minTemp
-    df.loc[node,'maxTemperature'] = maxTemp
-    df.loc[node,'minSmoke_level'] = minSmoke
-    df.loc[node,'maxSmoke_level'] = maxSmoke
-    df.loc[node,'minNoise_level'] = minNoise
-    df.loc[node,'maxNoise_level'] = maxNoise
-    df.loc[node,'Flame_occurence'] = flame
+    df.loc[node-1,'Name'] = name
+    df.loc[node-1,'minHumidity'] = minHum
+    df.loc[node-1,'maxHumidity'] = maxHum
+    df.loc[node-1,'minTemperature'] = minTemp
+    df.loc[node-1,'maxTemperature'] = maxTemp
+    df.loc[node-1,'minSmoke_level'] = minSmoke
+    df.loc[node-1,'maxSmoke_level'] = maxSmoke
+    df.loc[node-1,'minNoise_level'] = minNoise
+    df.loc[node-1,'maxNoise_level'] = maxNoise
+    df.loc[node-1,'Flame_occurence'] = flame
 
     df.to_csv("optimalParameters.csv", index=False)
     
@@ -243,7 +244,7 @@ def openOptimalWindow():
 
     #for sensor node 3
     sensornode3Frame = LabelFrame(optimalWindowFrame,text="Sensor Node 3")
-    sensornode3Frame.grid(column=2,row=0,ipadx=5)
+    sensornode3Frame.grid(column=0,row=1,ipadx=5)
 
     sensornode3Name = Label(sensornode3Frame,text="Name")
     sensornode3Name.grid(row=0,column=0)
@@ -309,7 +310,7 @@ def openOptimalWindow():
 
     #for sensor node 4
     sensornode4Frame = LabelFrame(optimalWindowFrame,text="Sensor Node 4")
-    sensornode4Frame.grid(column=3,row=0,ipadx=5)
+    sensornode4Frame.grid(column=1,row=1,ipadx=5)
 
     sensornode4Name = Label(sensornode4Frame,text="Name")
     sensornode4Name.grid(row=0,column=0)
@@ -432,6 +433,7 @@ def readmic():
     global query
     global speakingBox
     query = s.readMicrophone()
+    print(query)
     global speakFrame
     speakFrame.pack_forget()
     
@@ -443,7 +445,9 @@ def readmic():
         outputQuerytext.grid_forget()
 
     printQuery()
+ 
     speakFrame.destroy()
+    print('pass')
 
 #create table from sql output
 def createTable(output,machineName):
@@ -463,13 +467,38 @@ def createTable(output,machineName):
     headings = ttk.Treeview(tableFrame,columns=tuple(headingList),show="headings")
     headings.grid(row=0, column=0)
     for i in headingList:
-        headings.heading(i, text = i)
-
+        if i == 'Machine_id':
+            headings.heading(i, text = 'M. ID')
+        elif i == 'Flame_occurence':
+            headings.heading(i, text = 'Flame')
+        elif i == 'Noise_level':
+            headings.heading(i, text = 'Noise')
+        elif i == 'Smoke_level':
+            headings.heading(i, text = 'Smoke')
+        else:
+            headings.heading(i, text = i)
     for i in output:
         headings.insert('','end',values=i)
 
     for i in headingList:
-        headings.column(i, width=120, anchor=CENTER)
+        if i == 'ID':
+            headings.column(i, width=30, anchor=CENTER)
+        elif i == 'Date_n_Time':
+            headings.column(i, width=120, anchor=CENTER)
+        elif i == 'Machine_id':
+            headings.column(i, width=50, anchor=CENTER)
+        elif i == 'Flame_occurence':
+            headings.column(i, width=50, anchor=CENTER)
+        elif i == 'Temperature':
+            headings.column(i, width=80, anchor=CENTER)
+        elif i == 'Smoke_level':
+            headings.column(i, width=50, anchor=CENTER)
+        elif i == 'Noise_level':
+            headings.column(i, width=50, anchor=CENTER)
+        elif i == 'Humidity':
+            headings.column(i, width=50, anchor=CENTER) 
+        else:
+            headings.column(i, width=120, anchor=CENTER)
 
 
 
@@ -522,7 +551,7 @@ def translateQuery():
 
     
     
-    outputCanvas = Canvas(outputDataFrame,width=950,height=500)
+    outputCanvas = Canvas(outputDataFrame,width=500,height=250)
     outputCanvas.pack(side=LEFT, fill = BOTH, expand = 1)
     scrollbarMachine = ttk.Scrollbar(outputDataFrame, orient=VERTICAL, command=outputCanvas.yview)
     scrollbarMachine.pack(side=RIGHT,fill=Y)
@@ -674,6 +703,7 @@ else:
     root = Tk()
     root.title("Prototype")
     #root.geometry("750x400")
+    root.tk.call('tk','scaling',0.9)
     myCursor = db.cursor()
 
     #global variables
@@ -721,6 +751,7 @@ else:
 
 
     #speak query frame
+    '''
     speakQueryFrame = LabelFrame(firstWindow,padx=5,pady=5,text='Speak Query')
     speakQueryFrame.pack(anchor=W)
 
@@ -731,6 +762,7 @@ else:
     #speak button
     speakButton = Button(speakQueryFrame, text = "Speak",command=speak, padx=10)
     speakButton.grid(row=1,column=1)
+    '''
 
     #Output query frame
     outputQueryFrame = LabelFrame(firstWindow,padx=5,pady=5,text='You entered the query')

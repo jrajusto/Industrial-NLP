@@ -81,15 +81,16 @@ def remove_stop_words(tokens):
     
 
 def pos_tagging(tokens):
-    
+    """
     java_path = "/usr/lib/jvm/default-java/bin"
     os.environ['JAVAHOME'] = java_path
     stanford_dir = "/home/cpe124-group4/nlpThesis/stanford-postagger"
     model_path = stanford_dir + "/models/english-bidirectional-distsim.tagger"
     jar_path = stanford_dir + "/stanford-postagger.jar"
     tagger = StanfordPOSTagger(model_path, path_to_jar=jar_path)
+    """
     print("pos tags:")
-    tags = tagger.tag(tokens)
+    tags = nltk.pos_tag(tokens)
     print(tags)
 
     return tags
