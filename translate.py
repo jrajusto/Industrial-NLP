@@ -403,6 +403,8 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
     queryType.append(r"date: {<NNP><CD><CD>?}") #from january 5 to january 30
     queryType.append(r"numParam: {<JJR|JJ|NN|IN|RBR|VBP|VBZ><CD><NN|JJ|VBD>?<NN|JJ|VBD>}") #greater than 30 percent humidity
     queryType.append(r"pastCondition: {<IN|JJ><CD>?<NN>}") #past 7 days
+    queryType.append(r"twoCondition: {<NN|JJ|VBD>?<JJR|VBP><JJ><CD>}") # parameter? less/greater than or equal to
+
 
     
     #parse the query acording to query type 1

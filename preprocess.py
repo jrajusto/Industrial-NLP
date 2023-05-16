@@ -59,6 +59,7 @@ def remove_stop_words(tokens):
     custom_stopwords.remove('between')
     custom_stopwords.remove('more')
     custom_stopwords.append('generate')
+    custom_stopwords.append('occurence')
     custom_stopwords.append('me')
     custom_stopwords.remove('what')
 
