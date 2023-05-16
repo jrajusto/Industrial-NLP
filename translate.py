@@ -185,7 +185,7 @@ def dateCondition(queryType,pos_tags,clean_tokens,monthDict,currentYear,currentM
 
                     if current_minute <= numberVal:
                         if int(current_hour) == 0:
-                            hour = 23
+                            hour = "23"
                             if int(currentDay) == 1:
                                 day = str(int(monthToDayMax[str(int(currentMonth)-1)]))
                                 if int(currentMonth) == 1:
