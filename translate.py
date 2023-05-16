@@ -119,6 +119,8 @@ def dateCondition(queryType,pos_tags,clean_tokens,monthDict,currentYear,currentM
     datePastListList, datePastTagList = p.getNodes("pastCondition",chunk_condition)
     print("date past list")
     print(datePastListList)
+    current_hour = datetime.now().hour
+    current_minute = datetime.now().minute
     if datePastListList: 
         for datePastList in datePastListList:
 
@@ -138,6 +140,7 @@ def dateCondition(queryType,pos_tags,clean_tokens,monthDict,currentYear,currentM
                             month = "12"
                             year = str(int(currentYear)-1)
                         else: 
+
                             month = str(int(currentMonth)-1)
                             year = currentYear
                         day = int(monthToDayMax[month]) - (numberVal - int(currentDay))
@@ -146,23 +149,71 @@ def dateCondition(queryType,pos_tags,clean_tokens,monthDict,currentYear,currentM
                         day = int(currentDay) - numberVal
                         year = currentYear
                         
-                    dateString = "Date_n_Time > '" + year + "-" + month + "-" + str(day) +" 00:00:00'" + " AND Date_n_Time < '" + currentYear + "-" + currentMonth + "-" + str(int(currentDay)-1) +" 23:59:59'"
+                    dateString = "Date_n_Time > '" + year + "-" + month + "-" + str(day) +" 00:00:00'" + " AND Date_n_Time < '" + currentYear + "-" + currentMonth + "-" + str(int(currentDay)) +" 23:59:59'"
                 
                 if timeValue == "hour":
-                    current_hour = datetime.now().hour
+                    
 
                     if current_hour <= numberVal:
                         if int(currentDay) == 1:
                             day = str(int(monthToDayMax[str(int(currentMonth)-1)]))
+                            if int(currentMonth) == 1:
+                                month = "12"
+                                year = str(int(currentYear)-1)
+                            else: 
+
+                                month = str(int(currentMonth)-1)
+                                year = currentYear
+
                         else: 
+                            
                             day = str(int(currentDay)-1)
+                            month = str(currentMonth)
+                            year = currentYear
                         
                         hour = str(24 - (numberVal - current_hour))
                     else:
                         day = currentDay
                         hour = str(current_hour-numberVal)
+                        month = str(currentMonth)
+                        year = str(currentYear)
 
-                    dateString = "Date_n_Time > '" + currentYear + "-" + currentMonth + "-" + day +" " + hour + ":00:00'" + " AND Date_n_Time < '" + currentYear + "-" + currentMonth + "-" + currentDay +" " + str(current_hour-1) + ":59:59'"
+                    dateString = "Date_n_Time > '" + year + "-" + month + "-" + day +" " + hour + ":00:00'" + " AND Date_n_Time < '" + currentYear + "-" + currentMonth + "-" + currentDay +" " + str(current_hour) + ":59:59'"
+                
+                if timeValue == "minute":
+                    current_minute = datetime.now().minute
+
+                    if current_minute <= numberVal:
+                        if int(current_hour) == 0:
+                            hour = 23
+                            if int(currentDay) == 1:
+                                day = str(int(monthToDayMax[str(int(currentMonth)-1)]))
+                                if int(currentMonth) == 1:
+                                    month = "12"
+                                    year = str(int(currentYear)-1)
+                                else: 
+
+                                    month = str(int(currentMonth)-1)
+                                    year = currentYear
+
+                            else: 
+                                
+                                day = str(int(currentDay)-1)
+                                month = str(currentMonth)
+                                year = currentYear
+                            
+                        else: 
+                            hour = current_hour-1
+                            day = str(currentDay)
+                        
+                        minute = str(60 - (numberVal - current_minute))
+                    else:
+                        day = currentDay
+                        hour = str(current_hour)
+                        minute = str(current_minute)
+                        
+
+                    dateString = "Date_n_Time > '" + currentYear + "-" + currentMonth + "-" + day +" " + hour + ":"+ minute + ":00'" + " AND Date_n_Time < '" + currentYear + "-" + currentMonth + "-" + currentDay +" " + str(current_hour) + ":59:59'"
                 
 
                 if timeValue == "week":
@@ -180,7 +231,7 @@ def dateCondition(queryType,pos_tags,clean_tokens,monthDict,currentYear,currentM
                         year = currentYear
                         day = int(currentDay) - day
 
-                    dateString = "Date_n_Time > '" + year + "-" + month + "-" + str(day) +" 00:00:00'" + " AND Date_n_Time < '" + currentYear + "-" + currentMonth + "-" + str(int(currentDay)-1) +" 23:59:59'"
+                    dateString = "Date_n_Time > '" + year + "-" + month + "-" + str(day) +" 00:00:00'" + " AND Date_n_Time < '" + currentYear + "-" + currentMonth + "-" + str(currentDay) +" 23:59:59'"
 
                 if timeValue == "year":
                     year = str(int(currentYear)-1)
@@ -194,7 +245,7 @@ def dateCondition(queryType,pos_tags,clean_tokens,monthDict,currentYear,currentM
                         month = str(int(currentMonth)-numberVal)
                         year = currentYear
 
-                    dateString = "Date_n_Time > '" + year + "-" + month + "-1 00:00:00'" + " AND Date_n_Time < '" + currentYear + "-" + str(int(currentMonth)-1) + "-" + monthToDayMax[str(int(currentMonth)-1)] +" 23:59:59'"
+                    dateString = "Date_n_Time > '" + year + "-" + month + "-1 00:00:00'" + " AND Date_n_Time < '" + currentYear + "-" + str(int(currentMonth)-1) + "-" + monthToDayMax[str(currentMonth)] +" 23:59:59'"
 
 
                 
