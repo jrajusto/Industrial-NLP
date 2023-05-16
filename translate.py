@@ -121,6 +121,12 @@ def dateCondition(queryType,pos_tags,clean_tokens,monthDict,currentYear,currentM
     print(datePastListList)
     current_hour = datetime.now().hour
     current_minute = datetime.now().minute
+    year = currentYear
+    month = currentMonth
+    day = currentDay
+    minute = current_minute
+    hour = current_hour
+
     if datePastListList: 
         for datePastList in datePastListList:
 
