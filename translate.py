@@ -152,7 +152,7 @@ def dateCondition(queryType,pos_tags,clean_tokens,monthDict,currentYear,currentM
                         day = int(monthToDayMax[month]) - (numberVal - int(currentDay))
                     else:
                         month = str(currentMonth)
-                        day = int(currentDay) - numberVal
+                        day = str(int(currentDay) - numberVal)
                         year = currentYear
                         
                     dateString = "Date_n_Time > '" + year + "-" + month + "-" + str(day) +" 00:00:00'" + " AND Date_n_Time < '" + currentYear + "-" + currentMonth + "-" + str(int(currentDay)) +" 23:59:59'"
@@ -209,7 +209,7 @@ def dateCondition(queryType,pos_tags,clean_tokens,monthDict,currentYear,currentM
                                 year = currentYear
                             
                         else: 
-                            hour = current_hour-1
+                            hour = str(current_hour-1)
                             day = str(currentDay)
                             month = str(currentMonth)
                             year = currentYear
