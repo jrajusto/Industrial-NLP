@@ -205,15 +205,18 @@ def dateCondition(queryType,pos_tags,clean_tokens,monthDict,currentYear,currentM
                         else: 
                             hour = current_hour-1
                             day = str(currentDay)
+                            month = str(currentMonth)
+                            year = currentYear
                         
                         minute = str(60 - (numberVal - current_minute))
                     else:
                         day = currentDay
                         hour = str(current_hour)
-                        minute = str(current_minute)
+                        minute = str(current_minute - numberVal)
+                        month = str(currentMonth)
                         
 
-                    dateString = "Date_n_Time > '" + currentYear + "-" + currentMonth + "-" + day +" " + hour + ":"+ minute + ":00'" + " AND Date_n_Time < '" + currentYear + "-" + currentMonth + "-" + currentDay +" " + str(current_hour) + ":59:59'"
+                    dateString = "Date_n_Time > '" + year + "-" + month + "-" + day +" " + hour + ":"+ minute + ":00'" + " AND Date_n_Time < '" + currentYear + "-" + currentMonth + "-" + currentDay +" " + str(current_hour) + ":59:59'"
                 
 
                 if timeValue == "week":
