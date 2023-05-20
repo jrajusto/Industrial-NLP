@@ -691,6 +691,10 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
             chunk_condition = chunk_condition.parse(pos_tags)
 
             chunkTwoConditionList, chunkTwoConditionTags = p.getNodes("twoCondition",chunk_condition)     
+
+            print("two condition chunk")
+            print(chunkTwoConditionList)
+
             twoConditionBool = False
             for wordList in chunkTwoConditionList:
                 if len(wordList) == 3:
@@ -721,7 +725,7 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
                         conditionString.append(parameterToSQL[parameterUsed] +' <=' + str(w2n.word_to_num(wordList[2])))
                         twoConditionBool = True
 
-          
+
 
             print("condition string: ")
             print(conditionString)
