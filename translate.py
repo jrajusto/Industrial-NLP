@@ -399,7 +399,7 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
     queryType.append(r"condition: {<NN|JJ|VBD><JJR|JJ|NN|IN|RBR|VBP|VBZ|NNP>?<CD><CD>?}") #humidity is greater than 5
     queryType.append(r"conjuctions: {<CC>}") #AND OR
     queryType.append(r"monthQuery: {<DT|JJ|IN><NN>}") #this month or last 
-    queryType.append(r"withincondition: {<NN>?<IN><CD><CD>}") #temperature is within 
+    queryType.append(r"withincondition: {<NN|JJ|VBD>?<IN><CD><CD>}") #temperature is within 
     queryType.append(r"date: {<NNP><CD><CD>?}") #from january 5 to january 30
     queryType.append(r"numParam: {<JJR|JJ|NN|IN|RBR|VBP|VBZ><CD><NN|JJ|VBD>?<NN|JJ|VBD>}") #greater than 30 percent humidity
     queryType.append(r"pastCondition: {<IN|JJ><CD>?<NN>}") #past 7 days
@@ -596,6 +596,7 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
             chunk_condition = nltk.RegexpParser(queryType[4])
             chunk_condition = chunk_condition.parse(pos_tags)
             
+            ################## between parameter condition #######################
             withinParameterWordList, withinParameterTagWordList = p.getNodes("withincondition",chunk_condition)
             print("within Parameter word list: ")
             print(withinParameterWordList)
@@ -625,7 +626,7 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
             
             conditionString = []
             paramFound = False
-
+            ############### for num parameter ###########################
             chunk_numParam = nltk.RegexpParser(queryType[6])
             chunk_numParam = chunk_numParam.parse(pos_tags)
 
@@ -645,6 +646,7 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
                     print("numparambool")
                     print(numParamBool)
 
+            
             if (len(numParamList) == 1 and 'and' not in tokens) or (len(numParamList)>1 and 'and' in tokens) :
                 numParamBool = True
                 for numParam in numParamList:
@@ -683,9 +685,50 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
                         conditionString.append(parameterToSQL[wordList[2]] +' = ' + str(w2n.word_to_num(wordList[1])))
                     elif lenChunkParamList == 1:
                         conditionString.append(parameterToSQL[wordList[1]] +' = ' + str(w2n.word_to_num(wordList[0])))
-                            
+
+            ############## for greater/less than or equal to ##################
+            chunk_condition = nltk.RegexpParser(queryType[8])
+            chunk_condition = chunk_condition.parse(pos_tags)
+
+            chunkTwoConditionList, chunkTwoConditionTags = p.getNodes("twoCondition",chunk_condition)     
+
+            for wordList in chunkTwoConditionList:
+                if len(wordList) == 3:
+                    if wordList[0] in parameterList:
+                        if wordList[1] == operationList[0] or wordList[1] in greaterSynonyms or wordList[1] in aboveSynonyms or wordList[1] in moreSynonyms:
+                            conditionString.append(parameterToSQL[wordList[0]] +' >= ' + str(w2n.word_to_num(wordList[2])))
+                        elif wordList[1] == operationList[1] or wordList[1] in belowSynonyms:
+                            conditionString.append(parameterToSQL[wordList[0]] +' <= ' + str(w2n.word_to_num(wordList[2])))
+                    else:
+                        for i in lemmatized_tokens:
+                                if i in parameterList:
+                                    parameterUsed = i
+                                    break
+                        if wordList[1] == operationList[0] or wordList[1] in greaterSynonyms or wordList[1] in aboveSynonyms or wordList[1] in moreSynonyms:
+                            conditionString.append(parameterToSQL[parameterUsed] +' >= ' + str(w2n.word_to_num(wordList[2])))
+                        elif wordList[1] == operationList[1] or wordList[1] in belowSynonyms:
+                            conditionString.append(parameterToSQL[parameterUsed] +' <=' + str(w2n.word_to_num(wordList[2])))
+                elif len(wordList) == 2:
+                    for i in lemmatized_tokens:
+                                if i in parameterList:
+                                    parameterUsed = i
+                                    break
+                    if wordList[0] == operationList[0] or wordList[0] in greaterSynonyms or wordList[0] in aboveSynonyms or wordList[0] in moreSynonyms:
+                        conditionString.append(parameterToSQL[parameterUsed] +' >= ' + str(w2n.word_to_num(wordList[2])))
+                    elif wordList[0] == operationList[1] or wordList[0] in belowSynonyms:
+                        conditionString.append(parameterToSQL[parameterUsed] +' <=' + str(w2n.word_to_num(wordList[2])))
+
+          
+                
+
+                    
+            
+
+
+
             print("condition string: ")
             print(conditionString)
+
             if not withinParameterWordList and not numParamBool:
                 for wordList in parameterWordList:
                 
