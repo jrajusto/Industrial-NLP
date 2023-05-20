@@ -738,30 +738,30 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
             for wordList in chunkNotEqualList:
                 if len(wordList) == 4:
                     if wordList[0] in parameterList and wordList[1] == 'not':
-                        conditionString.append(parameterToSQL[wordList[0]] +' = ' + str(w2n.word_to_num(wordList[3])))
+                        conditionString.append(parameterToSQL[wordList[0]] +' != ' + str(w2n.word_to_num(wordList[3])))
                         notEqualBool = True
                     elif wordList[1] == 'not':
                         for i in lemmatized_tokens:
                             if i in parameterList:
                                 parameterUsed = i
                                 break
-                        conditionString.append(parameterToSQL[parameterUsed] +' = ' + str(w2n.word_to_num(wordList[3])))
+                        conditionString.append(parameterToSQL[parameterUsed] +' != ' + str(w2n.word_to_num(wordList[3])))
                         notEqualBool = True
                 elif len(wordList) == 3:
                     if wordList[0] in parameterList:
-                        conditionString.append(parameterToSQL[wordList[0]] +' = ' + str(w2n.word_to_num(wordList[2])))
+                        conditionString.append(parameterToSQL[wordList[0]] +' != ' + str(w2n.word_to_num(wordList[2])))
                     else:
                         for i in lemmatized_tokens:
                             if i in parameterList:
                                 parameterUsed = i
                                 break
-                        conditionString.append(parameterToSQL[parameterUsed] +' = ' + str(w2n.word_to_num(wordList[2])))
+                        conditionString.append(parameterToSQL[parameterUsed] +' != ' + str(w2n.word_to_num(wordList[2])))
                 elif len(wordList) == 2:
                     for i in lemmatized_tokens:
                         if i in parameterList:
                             parameterUsed = i
                             break
-                    conditionString.append(parameterToSQL[parameterUsed] +' = ' + str(w2n.word_to_num(wordList[1])))
+                    conditionString.append(parameterToSQL[parameterUsed] +' != ' + str(w2n.word_to_num(wordList[1])))
 
 
 
