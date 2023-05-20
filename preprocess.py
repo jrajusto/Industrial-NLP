@@ -62,6 +62,7 @@ def remove_stop_words(tokens):
     custom_stopwords.append('occurence')
     custom_stopwords.append('me')
     custom_stopwords.remove('what')
+    custom_stopwords.remove('not')
 
     new_tokens = [word for word in tokens if word not in custom_stopwords]
     
