@@ -691,10 +691,11 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
             chunk_condition = chunk_condition.parse(pos_tags)
 
             chunkTwoConditionList, chunkTwoConditionTags = p.getNodes("twoCondition",chunk_condition)     
-
+            twoConditionBool = False
             for wordList in chunkTwoConditionList:
                 if len(wordList) == 3:
                     if wordList[0] in parameterList:
+                        twoConditionBool = True
                         if wordList[1] == operationList[0] or wordList[1] in greaterSynonyms or wordList[1] in aboveSynonyms or wordList[1] in moreSynonyms:
                             conditionString.append(parameterToSQL[wordList[0]] +' >= ' + str(w2n.word_to_num(wordList[2])))
                         elif wordList[1] == operationList[1] or wordList[1] in belowSynonyms:
@@ -715,21 +716,17 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
                                     break
                     if wordList[0] == operationList[0] or wordList[0] in greaterSynonyms or wordList[0] in aboveSynonyms or wordList[0] in moreSynonyms:
                         conditionString.append(parameterToSQL[parameterUsed] +' >= ' + str(w2n.word_to_num(wordList[2])))
+                        twoConditionBool = True
                     elif wordList[0] == operationList[1] or wordList[0] in belowSynonyms:
                         conditionString.append(parameterToSQL[parameterUsed] +' <=' + str(w2n.word_to_num(wordList[2])))
+                        twoConditionBool = True
 
           
-                
-
-                    
-            
-
-
 
             print("condition string: ")
             print(conditionString)
 
-            if not withinParameterWordList and not numParamBool:
+            if not withinParameterWordList and not numParamBool and not twoConditionBool:
                 for wordList in parameterWordList:
                 
 
