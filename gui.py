@@ -649,16 +649,22 @@ def translateQuery():
         
         if averageBool:
             df = pd.DataFrame (output, columns = headingList)
+            headingList.remove('ID')
+            headingList.remove('Machine_id')
+            headingList.remove('Date_n_Time')
             print(headingList)
 
-            headingNo = 0
             outputSentence = ""
+            
             for heading in headingList:
                 outputSentence = outputSentence + "The average " + SQLtoParameter[heading] + " is " + str(round(df[heading].mean(),2)) + ". "
             printAnswer(outputSentence)
 
         if maximumBool:
             df = pd.DataFrame (output, columns = headingList)
+            headingList.remove('ID')
+            headingList.remove('Machine_id')
+            headingList.remove('Date_n_Time')
             print(headingList)
 
             headingNo = 0
@@ -670,6 +676,9 @@ def translateQuery():
 
         if minimumBool:
             df = pd.DataFrame (output, columns = headingList)
+            headingList.remove('ID')
+            headingList.remove('Machine_id')
+            headingList.remove('Date_n_Time')
             print(headingList)
 
             headingNo = 0
@@ -682,6 +691,9 @@ def translateQuery():
 
         if countBool:
             df = pd.DataFrame (output, columns = headingList)
+            headingList.remove('ID')
+            headingList.remove('Machine_id')
+            headingList.remove('Date_n_Time')
             print(headingList)
             headingNo = 0
             outputSentence = ""
