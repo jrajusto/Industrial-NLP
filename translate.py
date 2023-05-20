@@ -697,7 +697,7 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
 
             twoConditionBool = False
             for wordList in chunkTwoConditionList:
-                if len(wordList) == 3:
+                if len(wordList) == 4:
                     if wordList[0] in parameterList:
                         twoConditionBool = True
                         if wordList[1] == operationList[0] or wordList[1] in greaterSynonyms or wordList[1] in aboveSynonyms or wordList[1] in moreSynonyms:
@@ -713,7 +713,7 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
                             conditionString.append(parameterToSQL[parameterUsed] +' >= ' + str(w2n.word_to_num(wordList[2])))
                         elif wordList[1] == operationList[1] or wordList[1] in belowSynonyms:
                             conditionString.append(parameterToSQL[parameterUsed] +' <=' + str(w2n.word_to_num(wordList[2])))
-                elif len(wordList) == 2:
+                elif len(wordList) == 3:
                     for i in lemmatized_tokens:
                                 if i in parameterList:
                                     parameterUsed = i
