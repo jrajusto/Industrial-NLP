@@ -404,6 +404,7 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
     queryType.append(r"numParam: {<JJR|JJ|NN|IN|RBR|VBP|VBZ><CD><NN|JJ|VBD>?<NN|JJ|VBD>}") #greater than 30 percent humidity
     queryType.append(r"pastCondition: {<IN|JJ><CD>?<NN>}") #past 7 days
     queryType.append(r"twoCondition: {<NN|JJ|VBD>?<JJR|VBP><JJ><CD>}") # parameter? less/greater than or equal to
+    queryType.append(r"notEqual: {<NN|JJ|VBD>?<RB><JJ><CD>}") # parameter? less/greater than or equal to
 
 
     
@@ -725,6 +726,7 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
                         conditionString.append(parameterToSQL[parameterUsed] +' <=' + str(w2n.word_to_num(wordList[2])))
                         twoConditionBool = True
 
+            ############## for not equal to ##################
 
 
             print("condition string: ")
@@ -758,9 +760,7 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
                                 conditionString.append(parameterToSQL[parameterUsed] +' < ' + str(w2n.word_to_num(wordList[2])))
                             elif wordList[1] == operationList[2] or wordList[1] in equalSynonyms:
                                 conditionString.append(parameterToSQL[parameterUsed] +' = ' + str(w2n.word_to_num(wordList[2])))
-                            else:
-                                conditionString.append(parameterToSQL[parameterUsed] +' = ' + str(w2n.word_to_num(wordList[1])))
-
+                            
                         if wordList[2].isdigit():
                             for i in lemmatized_tokens:
                                 if i in parameterList:
