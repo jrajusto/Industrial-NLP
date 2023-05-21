@@ -425,8 +425,8 @@ def speak():
     speakingLabel = Label(speakFrame,text="Start speaking now...")
     speakingLabel.pack()
 
-    threading.Thread(target=readmic).start()
-
+    #threading.Thread(target=readmic).start()
+    readmic()
    
 #get voice input from mic
 def readmic():
