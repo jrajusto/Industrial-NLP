@@ -12,6 +12,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import math
 import csv
+import time
 outputRowCount = 0
 
 class Machine:
@@ -446,7 +447,8 @@ def readmic():
 
     printQuery()
  
-    #speakFrame.destroy()
+    speakFrame.destroy()
+    time.sleep(10)
     print('pass2')
 
 #create table from sql output
