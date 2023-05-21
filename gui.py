@@ -763,7 +763,7 @@ else:
 
 
     #speak query frame
-    '''
+    
     speakQueryFrame = LabelFrame(firstWindow,padx=5,pady=5,text='Speak Query')
     speakQueryFrame.pack(anchor=W)
 
@@ -774,7 +774,7 @@ else:
     #speak button
     speakButton = Button(speakQueryFrame, text = "Speak",command=speak, padx=10)
     speakButton.grid(row=1,column=1)
-    '''
+    
 
     #Output query frame
     outputQueryFrame = LabelFrame(firstWindow,padx=5,pady=5,text='You entered the query')
