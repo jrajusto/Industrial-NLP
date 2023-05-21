@@ -448,7 +448,6 @@ def readmic():
     printQuery()
  
     speakFrame.destroy()
-    time.sleep(10)
     print('pass2')
 
 #create table from sql output
