@@ -552,7 +552,7 @@ def translateQuery():
 
     
     
-    outputCanvas = Canvas(outputDataFrame,width=500,height=250)
+    outputCanvas = Canvas(outputDataFrame,width=500,height=200)
     outputCanvas.pack(side=LEFT, fill = BOTH, expand = 1)
     scrollbarMachine = ttk.Scrollbar(outputDataFrame, orient=VERTICAL, command=outputCanvas.yview)
     scrollbarMachine.pack(side=RIGHT,fill=Y)
