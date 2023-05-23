@@ -738,11 +738,11 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
             for wordList in chunknotConditionList:
                 if len(wordList) == 4:
                     if wordList[0] in parameterList and wordList[1] == 'not':
-                        if wordList[2] == operationList[0] or wordList[1] in greaterSynonyms or wordList[1] in aboveSynonyms or wordList[1] in moreSynonyms:
+                        if wordList[2] == operationList[0] or wordList[2] in greaterSynonyms or wordList[2] in aboveSynonyms or wordList[2] in moreSynonyms:
                             conditionString.append(parameterToSQL[wordList[0]] +' <= ' + str(w2n.word_to_num(wordList[3])))
                         elif wordList[2] == operationList[1] or wordList[1] in belowSynonyms:
-                            conditionString.append(parameterToSQL[wordList[0]] +' >= ' + str(w2n.word_to_num(wordList[3])))
-                        elif wordList[2] == operationList[2] or wordList[1] in equalSynonyms:
+                            conditionString.append(parameterToSQL[wordList[2]] +' >= ' + str(w2n.word_to_num(wordList[3])))
+                        elif wordList[2] == operationList[2] or wordList[2] in equalSynonyms:
                             conditionString.append(parameterToSQL[wordList[0]] +' != ' + str(w2n.word_to_num(wordList[3])))
                         notConditionBool = True
                     elif wordList[1] == 'not':
@@ -750,11 +750,11 @@ def convertToSql(query,optimalMachine1,optimalMachine2,optimalMachine3,optimalMa
                             if i in parameterList:
                                 parameterUsed = i
                                 break
-                        if wordList[2] == operationList[0] or wordList[1] in greaterSynonyms or wordList[1] in aboveSynonyms or wordList[1] in moreSynonyms:
+                        if wordList[2] == operationList[0] or wordList[2] in greaterSynonyms or wordList[2] in aboveSynonyms or wordList[2] in moreSynonyms:
                             conditionString.append(parameterToSQL[parameterUsed] +' <= ' + str(w2n.word_to_num(wordList[3])))
-                        elif wordList[2] == operationList[1] or wordList[1] in belowSynonyms:
+                        elif wordList[2] == operationList[1] or wordList[2] in belowSynonyms:
                             conditionString.append(parameterToSQL[parameterUsed] +' >= ' + str(w2n.word_to_num(wordList[3])))
-                        elif wordList[2] == operationList[2] or wordList[1] in equalSynonyms:
+                        elif wordList[2] == operationList[2] or wordList[2] in equalSynonyms:
                             conditionString.append(parameterToSQL[parameterUsed] +' != ' + str(w2n.word_to_num(wordList[3])))
                         notConditionBool = True
                 elif len(wordList) == 3:
